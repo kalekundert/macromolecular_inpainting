@@ -1,0 +1,43 @@
+References
+==========
+
+.. [Carreira2018] :doi:`10.48550/arXiv.1705.07750`
+.. [CeretoMassague2013] :doi:`10.1186/1758-2946-5-36`
+.. [Cesa2022] https://openreview.net/forum?id=WE4qe9xlnQw
+.. [Chakraborti2021] :doi:`10.3390/ijms22136830`
+.. [Derevyanko2018] :doi:`10.1093/bioinformatics/bty494`
+.. [Doersch2016] :doi:`10.48550/arXiv.1505.05192`
+.. [Dosovitskiy2021] :doi:`10.48550/arXiv.2010.11929`
+.. [Hara2018] :doi:`10.1109/CVPR.2018.00685`
+.. [He2015] :doi:`10.48550/arXiv.1512.03385`
+.. [He2021] :doi:`10.48550/arXiv.2111.06377`
+.. [Howard2017] :doi:`10.48550/arXiv.1704.04861`
+.. [Huang2018] :doi:`10.48550/arXiv.1608.06993`
+.. [Huynk2009] :doi:`10.1007/s10851-009-0161-2`
+.. [Jimenez2017] :doi:`10.1093/bioinformatics/btx350`
+.. [Jones2017] :doi:`10.1108/EC-02-2016-0052`
+.. [Kopuklu2021] :doi:`10.48550/arXiv.1904.02422`
+.. [Krizhevsky2012] :doi:`10.1145/3065386`
+.. [Liu2015] :doi:`10.1093/bioinformatics/btu626`
+.. [Maddhuri2019] :doi:`10.1038/s41592-019-0500-1`
+.. [Maturana2015a] :doi:`10.1109/ICRA.2015.7139679`
+.. [Maturana2015b] :doi:`10.1109/IROS.2015.7353481`
+.. [Miyaguchi2021] :doi:`10.1038/s41598-021-02948-y`
+.. [Pages2019] :doi:`10.1093/bioinformatics/btz122`
+.. [Qi2020] :doi:`10.1021/acs.jcim.0c00043`
+.. [Ragoza2017] :doi:`10.1021/acs.jcim.6b00740`
+.. [Ramakrishnan2014] :doi:`10.1038/sdata.2014.22`
+.. [Sener2019] :doi:`10.48550/arXiv.1810.04650`
+.. [Simonyan2015] :doi:`10.48550/arXiv.1409.1556`
+.. [Strobl2016] :doi:`10.1016/j.jcp.2016.02.003`
+.. [Szegedy2014] :doi:`10.48550/arXiv.1409.4842`
+.. [Torng2017] :doi:`10.1186/s12859-017-1702-0`
+.. [Townshend2022] :doi:`10.48550/arXiv.2012.04035`
+.. [Tran2015] :doi:`10.48550/arXiv.1412.0767`
+.. [Wallach2015] :doi:`10.48550/arXiv.1510.02855`
+.. [Wang2003] :doi:`10.1093/bioinformatics/btg224`
+.. [Wang2020] :doi:`10.1093/bioinformatics/btz870`
+.. [Weiler2018] :doi:`10.48550/arXiv.1807.02547`
+.. [Xie2017] :doi:`10.48550/arXiv.1611.05431`
+.. [Zhang2020] :doi:`10.1002/prot.25868`
+.. [Zhou2020] :doi:`10.48550/arXiv.1812.07035`

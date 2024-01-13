@@ -1,5 +1,11 @@
 /build
+
 *.png
 *.tif
 *.tiff
 *.pdf
+*.db
+
+workspace
+lightning_logs
+cache

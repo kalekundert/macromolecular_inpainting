@@ -1,0 +1,103 @@
+- Dropout for linear layers [Simonyan2015]
+
+- Refactor data module
+
+  - The atom3d_menagerie design is better.
+
+- Hashing based approach to eliminating duplicate training examples:
+
+  - Calculate metrics like the following for each candidate origin:
+
+    - # protein atoms
+    - # nucleic acid
+    - # small molecule atoms
+    - # metal atoms
+    - # points in each Ramachandran bin
+    - nearest TERM
+
+  - Empirically determine bins for each of these metrics, and record the bin 
+    that each example falls into.
+
+  - When sampling origins, sample uniformly from occupied bins, then sample 
+    uniformly from within that bin.  This will downwweight examples from highly 
+    occupied bins, and ensure that the model is trained on a diverse set of 
+    data.
+
+  - Foldseek
+
+- Parameters to optimize
+
+  Overall, after brainstorming as many parameters as I could, I think there's 
+  nothing much more to do with the SMP dataset.  There are parameters I haven't 
+  tested, but none seem very important.  Going forward, I'll probably (i) try 
+  preparing the RES dataset, which might be better than SMP, and (ii) start 
+  testing actual DenseNet/ResNet architectures.  
+
+  - Fourier grid size/shape:
+
+    - This doesn't really seem that important to me.  I expect there will be 
+      bad results if it's too small, but no improvement for making it too big.
+
+  - Convolution kernel parameters:
+
+    - Inclined to think that the defaults are reasonable here.
+
+  - 1D convolution on input features:
+
+    - Only useful if I have enough examples of each atom type.  Maybe I can 
+      pretrain of a subset of the CSD chosen to have as many atom types as 
+      possible, in the most even proportions possible.  Then, hold the initial 
+      1D convolution fixed in subsequent trainings.
+
+  - Width/depth:
+
+    - Didn't vary these parameters in the SMP CNN training runs.  Don't think 
+      it would be informative, because the trade-off is already pretty clear: 
+      increasing width and/or depth gives better performance in exchange for 
+      longer training times and more chance of overfitting.  But the specific 
+      values of these parameters are not likely to translate from my small SMP 
+      models to my big transformation prediction/score-based models.
+
+  - Regularization:
+
+    - Order of batch-norm/conv/nonlinearity
+
+    - Inclusion of dropout.
+
+      - Don't think mixing batch-norm and dropout is a good idea, since dropout 
+        has different effect on variance in traininng/eval modes.  It is 
+        possible to use these layers together, but it seems subtle and 
+        error-prone.
+
+  - ResNet and DenseNet:
+
+    - Width vs depth
+      
+      - The backbone/transition widths I'm using right now aren't quite right.  
+        I copied the multiplicities from the SE(3) CNN example, but didn't 
+        account for the fact that (i) I'm using regular representations instead 
+        of polynomial representations and (ii) the SE(3) example uses a 
+        narrower representation in the first layer.  So I'm not necessarily 
+        using a comparable number of channels, which is probably what really 
+        matters.
+
+        Really, I should be trying to match the number of channels.  That would 
+        get rid of some of the awkward cases where the number of channels 
+        decreases.
+
+  - DenseNet only:
+
+    - Growth rate
+    - Block depth
+    - Block nonlinearities
+
+  - ResNet only:
+
+    - Wide blocks, bottleneck blocks, etc.
+    - Downsampling:
+      - 2-1-2 pooling: 21-19-9-7-3
+      - 1-2-2 pooling with 2 initial conv: (21-19-17)-15-7-3
+    - Skip connection: concat vs conv
+    - Other WRN architectures
+    - Fourier vs polynominal outer types
+
