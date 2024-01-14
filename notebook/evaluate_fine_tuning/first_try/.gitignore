@@ -1,0 +1,7 @@
+alpha_nonequivariant_pretrained/
+alpha_nonequivariant_untrained/
+cnn_noneq_pretrained/
+cnn_noneq_untrained/
+
+*.err
+*.out

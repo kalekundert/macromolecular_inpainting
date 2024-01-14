@@ -65,6 +65,16 @@ HPARAMS = label_hparams(
             ckpt_path=Path('20240106_compare_classifiers/cnn/checkpoints/epoch=499-step=250000.ckpt'),
             latent_channels=2048,
         ),
+
+        HParams(
+            config_path=Path('20231116_compare_resnets/alpha_nonequivariant.yml'),
+            latent_channels=980,
+        ),
+        HParams(
+            config_path=Path('20231116_compare_resnets/alpha_nonequivariant.yml'),
+            ckpt_path=Path('20231116_compare_resnets/alpha_nonequivariant/checkpoints/epoch=499-step=250000.ckpt'),
+            latent_channels=980,
+        ),
 )
 
 def make_model(hparams):
@@ -101,7 +111,7 @@ if __name__ == '__main__':
 
     trainer = get_trainer(
             Path(hparams_name),
-            max_epochs=50,
+            max_epochs=1000,
             fast_dev_run=args['--debug'] and 10,
     )
     model = RegressionModule(model, Adam)
