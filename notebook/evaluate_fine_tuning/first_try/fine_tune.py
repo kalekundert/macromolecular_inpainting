@@ -18,11 +18,16 @@ Options:
 
 import torch
 import torch.nn as nn
+import torch.nn.functional as F
 import sys
+import re
 
-from atom3d_menagerie.data.lba import get_default_lba_data
-from atom3d_menagerie.predict import RegressionModule, get_trainer
 from atom3d_menagerie.hparams import label_hparams, require_hparams
+from atom3d_menagerie.predict import RegressionModule, get_trainer
+from atom3d_menagerie.data.lba import get_default_lba_data
+from atom3d_menagerie.models.escnn import invariant_fourier
+from escnn.nn import GeometricTensor
+from escnn.gspaces import rot3dOnR3
 from torch.optim import Adam
 from dataclasses import dataclass
 from functools import partial
@@ -38,6 +43,7 @@ class HParams:
     config_path: Path
     ckpt_path: Optional[Path] = None
     latent_channels: int
+    equivariant: bool = False
 
 class Regressor(nn.Sequential):
 
@@ -51,11 +57,31 @@ class Regressor(nn.Sequential):
 
         super().__init__(*iter_layers())
 
+class EquivariantWrapper(nn.Sequential):
+
+    def __init__(self, encoder, invariant_factory):
+        super().__init__(
+                WrapTensor(encoder.in_type),
+                encoder,
+                *invariant_factory(encoder.out_type),
+        )
+
+class WrapTensor(nn.Module):
+
+    def __init__(self, in_type):
+        super().__init__()
+        self.in_type = in_type
+
+    def forward(self, x):
+        return GeometricTensor(x, self.in_type)
+
+
 def label_hparam(hparam):
     return f'{hparam.config_path.stem}_{"pretrained" if hparam.ckpt_path else "untrained"}'
 
 HPARAMS = label_hparams(
         label_hparam,
+
         HParams(
             config_path=Path('20240106_compare_classifiers/cnn_noneq.yml'),
             latent_channels=2048,
@@ -68,17 +94,34 @@ HPARAMS = label_hparams(
 
         HParams(
             config_path=Path('20231116_compare_resnets/alpha_nonequivariant.yml'),
-            latent_channels=980,
+            latent_channels=28,
+            equivariant=True,
         ),
         HParams(
             config_path=Path('20231116_compare_resnets/alpha_nonequivariant.yml'),
             ckpt_path=Path('20231116_compare_resnets/alpha_nonequivariant/checkpoints/epoch=499-step=250000.ckpt'),
-            latent_channels=980,
+            latent_channels=28,
+            equivariant=True,
         ),
 )
 
 def make_model(hparams):
     encoder, img_params = load_encoder(hparams.config_path, hparams.ckpt_path)
+
+    if hparams.equivariant:
+        gspace = rot3dOnR3()
+        so3 = gspace.fibergroup
+        grid_s2 = so3.sphere_grid('thomson_cube', N=4)
+
+        encoder = EquivariantWrapper(
+                encoder=encoder,
+                invariant_factory=partial(
+                    invariant_fourier,
+                    ift_grid=grid_s2,
+                    function=F.gelu,
+                ),
+        )
+
     regressor = Regressor(
             channels=[hparams.latent_channels, 512, 1],
             drop_rate=0.2,
@@ -93,6 +136,14 @@ def load_encoder(config_path: Path, ckpt_path: Optional[Path]):
 
     if ckpt_path:
         ckpt = torch.load(ckpt_path, map_location=torch.device('cpu'))
+
+        # The buffers used by the Gaussian blur module used to be stored in 
+        # checkpoints, but are currently not.  So if these keys are present, 
+        # just remove them.
+        for k in list(ckpt['state_dict'].keys()):
+            if re.search('pool.blur.(filter|weights)$', k):
+                del ckpt['state_dict'][k]
+
         c.model.load_state_dict(ckpt['state_dict'])
 
     return c.model.model.encoder.encoder, c.data.img_params
@@ -106,8 +157,6 @@ if __name__ == '__main__':
 
     model, img_params = make_model(hparams)
     data = get_default_lba_data(img_params=img_params)
-
-    debug(img_params)
 
     trainer = get_trainer(
             Path(hparams_name),
