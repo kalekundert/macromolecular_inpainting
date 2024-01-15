@@ -3,9 +3,9 @@
 #SBATCH --gres gpu
 #SBATCH --partition gpu,gpu_quad
 #SBATCH --qos=gpuquad_qos
-#SBATCH --time 0-18:00  # D-H:M
+#SBATCH --time 0-48:00  # D-H:M
 #SBATCH --cpus-per-task 4
-#SBATCH --mem 4G
+#SBATCH --mem 6G
 #SBATCH -o %x_%j.out
 #SBATCH -e %x_%j.err
 

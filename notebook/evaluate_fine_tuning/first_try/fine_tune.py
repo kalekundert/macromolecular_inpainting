@@ -22,7 +22,7 @@ import torch.nn.functional as F
 import sys
 import re
 
-from atom3d_menagerie.hparams import label_hparams, require_hparams
+from atom3d_menagerie.hparams import label_hparams, require_hparams, if_gpu
 from atom3d_menagerie.predict import RegressionModule, get_trainer
 from atom3d_menagerie.data.lba import get_default_lba_data
 from atom3d_menagerie.models.escnn import invariant_fourier
@@ -137,9 +137,9 @@ def load_encoder(config_path: Path, ckpt_path: Optional[Path]):
     if ckpt_path:
         ckpt = torch.load(ckpt_path, map_location=torch.device('cpu'))
 
-        # The buffers used by the Gaussian blur module used to be stored in 
-        # checkpoints, but are currently not.  So if these keys are present, 
-        # just remove them.
+        # The buffers used by the Gaussian blur module used to be stored in
+        # checkpoints, but no longer are.  So if these keys are present, just
+        # remove them.
         for k in list(ckpt['state_dict'].keys()):
             if re.search('pool.blur.(filter|weights)$', k):
                 del ckpt['state_dict'][k]
@@ -156,7 +156,10 @@ if __name__ == '__main__':
     hparams_name, hparams = require_hparams(args['<hparams>'], HPARAMS)
 
     model, img_params = make_model(hparams)
-    data = get_default_lba_data(img_params=img_params)
+    data = get_default_lba_data(
+            img_params=img_params,
+            batch_size=if_gpu(64, 2),
+    )
 
     trainer = get_trainer(
             Path(hparams_name),
