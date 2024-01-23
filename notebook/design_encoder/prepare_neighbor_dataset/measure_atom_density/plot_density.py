@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-from atompaint.datasets.transform_pred.neighbor_count import load_origins
+from atompaint.transform_pred.datasets.origins import load_origins
 from scipy.stats import gaussian_kde
 from collections import Counter
 from pathlib import Path

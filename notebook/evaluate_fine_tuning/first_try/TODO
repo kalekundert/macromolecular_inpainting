@@ -1,0 +1,3 @@
+Right now, I can't load the alpha checkpoint because the blur buffers are the wrong size.
+
+I have an escnn commit that fixes that, but I can't push it until `ap_transform_pred` is finished running, otherwise it'll break the current run.  I think that might be a day or so.

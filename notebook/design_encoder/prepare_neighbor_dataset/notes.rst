@@ -115,3 +115,26 @@ Loss function
     feels like I might not be calculating gradients correctly if I use the 
     input coordinates in two different forms like that...
 
+Biological assemblies
+---------------------
+- [Anand2022]_ mention that they use biological assembly coordinates when 
+  available.  This is definitely a good idea.  Not only do we want to be able 
+  to predict those kinds of *real* interfaces, but adding more atoms to the 
+  structure also increases or chances of finding non-empty neighbors.
+
+- Prody makes it pretty easy to generate biological assemblies:
+
+  http://prody.csb.pitt.edu/tutorials/structure_analysis/biomolt.html?highlight=buildbiomolecules
+
+- I definitely want to do anything relating to biological assemblies in 
+  advance.  That means that my ultimate database file (probably SQLite) will 
+  need to contain coordinate information (probably as feather/parquet blobs).
+
+Structure vs. sequence cutoffs
+------------------------------
+- Was thinking about using PDB mmseqs2 clustering, since it's available for all 
+  members of PDB, but it would allow the same domain in different splits.
+
+- Domain level classification is probably best way.  
+
+
