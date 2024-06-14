@@ -1,0 +1,333 @@
+// Computational graph for the feedforward sweep
+digraph NeighborLocationPredictor {
+	graph [label=<<B>NeighborLocationPredictor</B><br align='left'/>55 tensors total (28.8 MB)<br align='left'/>3268582 params total (12.5 MB)<br align='left'/>> labeljust=left labelloc=t ordering=out rankdir=BT]
+	node [ordering=out]
+	input_1 [label=<<b>input_1</b><br/>2x2x6x21x21x21 (868.4 KB)<br/>@input.x> color=black fillcolor="#98FB98" fontcolor=black ordering=out shape=oval style="filled,solid"]
+	input_1 -> getitem_1_1 [arrowsize=.7 color=black fontcolor=black labelfontsize=8 style=solid]
+	input_1 -> getitem_2_17 [arrowsize=.7 color=black fontcolor=black labelfontsize=8 style=solid]
+	getitem_1_1 [label=<<b>getitem_1_1</b><br/>2x6x21x21x21 (434.3 KB)> color=black fillcolor=white fontcolor=black ordering=out shape=oval style="filled,solid"]
+	conv3d_1_2pass1 [label=<<b>conv3d_1_2:1</b><br/>2x32x19x19x19 (1.7 MB)<br/>params: 32x6x3x3x3, x32<br/>@pair_encoder.view_encoder.0:1> color=black fillcolor="#E6E6E6" fontcolor=black ordering=out shape=box style="filled,solid"]
+	batchnorm_1_3pass1 [label=<<b>batchnorm_1_3:1</b><br/>2x32x19x19x19 (1.7 MB)<br/>params: x32, x32<br/>@pair_encoder.view_encoder.1:1> color=black fillcolor="#E6E6E6" fontcolor=black ordering=out shape=box style="filled,solid"]
+	relu_1_4pass1 [label=<<b>relu_1_4:1</b><br/>2x32x19x19x19 (1.7 MB)<br/>@pair_encoder.view_encoder.2:1> color=black fillcolor=white fontcolor=black ordering=out shape=box style="filled,solid"]
+	conv3d_2_5pass1 [label=<<b>conv3d_2_5:1</b><br/>2x64x17x17x17 (2.4 MB)<br/>params: 64x32x3x3x3, x64<br/>@pair_encoder.view_encoder.3:1> color=black fillcolor="#E6E6E6" fontcolor=black ordering=out shape=box style="filled,solid"]
+	batchnorm_2_6pass1 [label=<<b>batchnorm_2_6:1</b><br/>2x64x17x17x17 (2.4 MB)<br/>params: x64, x64<br/>@pair_encoder.view_encoder.4:1> color=black fillcolor="#E6E6E6" fontcolor=black ordering=out shape=box style="filled,solid"]
+	relu_2_7pass1 [label=<<b>relu_2_7:1</b><br/>2x64x17x17x17 (2.4 MB)<br/>@pair_encoder.view_encoder.5:1> color=black fillcolor=white fontcolor=black ordering=out shape=box style="filled,solid"]
+	maxpool3d_1_8pass1 [label=<<b>maxpool3d_1_8:1</b><br/>2x64x8x8x8 (256.2 KB)<br/>@pair_encoder.view_encoder.6:1> color=black fillcolor=white fontcolor=black ordering=out shape=box style="filled,solid"]
+	conv3d_3_9pass1 [label=<<b>conv3d_3_9:1</b><br/>2x128x6x6x6 (216.2 KB)<br/>params: 128x64x3x3x3, x128<br/>@pair_encoder.view_encoder.7:1> color=black fillcolor="#E6E6E6" fontcolor=black ordering=out shape=box style="filled,solid"]
+	batchnorm_3_10pass1 [label=<<b>batchnorm_3_10:1</b><br/>2x128x6x6x6 (216.2 KB)<br/>params: x128, x128<br/>@pair_encoder.view_encoder.8:1> color=black fillcolor="#E6E6E6" fontcolor=black ordering=out shape=box style="filled,solid"]
+	relu_3_11pass1 [label=<<b>relu_3_11:1</b><br/>2x128x6x6x6 (216.2 KB)<br/>@pair_encoder.view_encoder.9:1> color=black fillcolor=white fontcolor=black ordering=out shape=box style="filled,solid"]
+	conv3d_4_12pass1 [label=<<b>conv3d_4_12:1</b><br/>2x256x4x4x4 (128.2 KB)<br/>params: 256x128x3x3x3, x256<br/>@pair_encoder.view_encoder.10:1> color=black fillcolor="#E6E6E6" fontcolor=black ordering=out shape=box style="filled,solid"]
+	batchnorm_4_13pass1 [label=<<b>batchnorm_4_13:1</b><br/>2x256x4x4x4 (128.2 KB)<br/>params: x256, x256<br/>@pair_encoder.view_encoder.11:1> color=black fillcolor="#E6E6E6" fontcolor=black ordering=out shape=box style="filled,solid"]
+	relu_4_14pass1 [label=<<b>relu_4_14:1</b><br/>2x256x4x4x4 (128.2 KB)<br/>@pair_encoder.view_encoder.12:1> color=black fillcolor=white fontcolor=black ordering=out shape=box style="filled,solid"]
+	maxpool3d_2_15pass1 [label=<<b>maxpool3d_2_15:1</b><br/>2x256x2x2x2 (16.2 KB)<br/>@pair_encoder.view_encoder.13:1> color=black fillcolor=white fontcolor=black ordering=out shape=box style="filled,solid"]
+	flatten_1_16pass1 [label=<<b>flatten_1_16:1</b><br/>2x2048 (16.1 KB)<br/>@pair_encoder.view_encoder.14:1> color=black fillcolor=white fontcolor=black ordering=out shape=box style="filled,solid"]
+	getitem_2_17 [label=<<b>getitem_2_17</b><br/>2x6x21x21x21 (434.3 KB)> color=black fillcolor=white fontcolor=black ordering=out shape=oval style="filled,solid"]
+	conv3d_1_2pass2 [label=<<b>conv3d_1_2:2</b><br/>2x32x19x19x19 (1.7 MB)<br/>params: 32x6x3x3x3, x32<br/>@pair_encoder.view_encoder.0:2> color=black fillcolor="#E6E6E6" fontcolor=black ordering=out shape=box style="filled,solid"]
+	batchnorm_1_3pass2 [label=<<b>batchnorm_1_3:2</b><br/>2x32x19x19x19 (1.7 MB)<br/>params: x32, x32<br/>@pair_encoder.view_encoder.1:2> color=black fillcolor="#E6E6E6" fontcolor=black ordering=out shape=box style="filled,solid"]
+	relu_1_4pass2 [label=<<b>relu_1_4:2</b><br/>2x32x19x19x19 (1.7 MB)<br/>@pair_encoder.view_encoder.2:2> color=black fillcolor=white fontcolor=black ordering=out shape=box style="filled,solid"]
+	conv3d_2_5pass2 [label=<<b>conv3d_2_5:2</b><br/>2x64x17x17x17 (2.4 MB)<br/>params: 64x32x3x3x3, x64<br/>@pair_encoder.view_encoder.3:2> color=black fillcolor="#E6E6E6" fontcolor=black ordering=out shape=box style="filled,solid"]
+	batchnorm_2_6pass2 [label=<<b>batchnorm_2_6:2</b><br/>2x64x17x17x17 (2.4 MB)<br/>params: x64, x64<br/>@pair_encoder.view_encoder.4:2> color=black fillcolor="#E6E6E6" fontcolor=black ordering=out shape=box style="filled,solid"]
+	relu_2_7pass2 [label=<<b>relu_2_7:2</b><br/>2x64x17x17x17 (2.4 MB)<br/>@pair_encoder.view_encoder.5:2> color=black fillcolor=white fontcolor=black ordering=out shape=box style="filled,solid"]
+	maxpool3d_1_8pass2 [label=<<b>maxpool3d_1_8:2</b><br/>2x64x8x8x8 (256.2 KB)<br/>@pair_encoder.view_encoder.6:2> color=black fillcolor=white fontcolor=black ordering=out shape=box style="filled,solid"]
+	conv3d_3_9pass2 [label=<<b>conv3d_3_9:2</b><br/>2x128x6x6x6 (216.2 KB)<br/>params: 128x64x3x3x3, x128<br/>@pair_encoder.view_encoder.7:2> color=black fillcolor="#E6E6E6" fontcolor=black ordering=out shape=box style="filled,solid"]
+	batchnorm_3_10pass2 [label=<<b>batchnorm_3_10:2</b><br/>2x128x6x6x6 (216.2 KB)<br/>params: x128, x128<br/>@pair_encoder.view_encoder.8:2> color=black fillcolor="#E6E6E6" fontcolor=black ordering=out shape=box style="filled,solid"]
+	relu_3_11pass2 [label=<<b>relu_3_11:2</b><br/>2x128x6x6x6 (216.2 KB)<br/>@pair_encoder.view_encoder.9:2> color=black fillcolor=white fontcolor=black ordering=out shape=box style="filled,solid"]
+	conv3d_4_12pass2 [label=<<b>conv3d_4_12:2</b><br/>2x256x4x4x4 (128.2 KB)<br/>params: 256x128x3x3x3, x256<br/>@pair_encoder.view_encoder.10:2> color=black fillcolor="#E6E6E6" fontcolor=black ordering=out shape=box style="filled,solid"]
+	batchnorm_4_13pass2 [label=<<b>batchnorm_4_13:2</b><br/>2x256x4x4x4 (128.2 KB)<br/>params: x256, x256<br/>@pair_encoder.view_encoder.11:2> color=black fillcolor="#E6E6E6" fontcolor=black ordering=out shape=box style="filled,solid"]
+	relu_4_14pass2 [label=<<b>relu_4_14:2</b><br/>2x256x4x4x4 (128.2 KB)<br/>@pair_encoder.view_encoder.12:2> color=black fillcolor=white fontcolor=black ordering=out shape=box style="filled,solid"]
+	maxpool3d_2_15pass2 [label=<<b>maxpool3d_2_15:2</b><br/>2x256x2x2x2 (16.2 KB)<br/>@pair_encoder.view_encoder.13:2> color=black fillcolor=white fontcolor=black ordering=out shape=box style="filled,solid"]
+	flatten_1_16pass2 [label=<<b>flatten_1_16:2</b><br/>2x2048 (16.1 KB)<br/>@pair_encoder.view_encoder.14:2> color=black fillcolor=white fontcolor=black ordering=out shape=box style="filled,solid"]
+	cat_1_18 [label=<<b>cat_1_18</b><br/>2x4096 (32.1 KB)<br/>@pair_encoder> color=black fillcolor=white fontcolor=black ordering=out shape=box style="filled,solid"]
+	cat_1_18 -> linear_1_19 [arrowsize=.7 color=black fontcolor=black labelfontsize=8 style=solid]
+	linear_1_19 [label=<<b>linear_1_19</b><br/>2x512 (4.1 KB)<br/>params: 512x4096, x512<br/>@pair_classifier.0> color=black fillcolor="#E6E6E6" fontcolor=black ordering=out shape=box style="filled,solid"]
+	relu_5_20 [label=<<b>relu_5_20</b><br/>2x512 (4.1 KB)<br/>@pair_classifier.1> color=black fillcolor=white fontcolor=black ordering=out shape=box style="filled,solid"]
+	dropout_1_21 [label=<<b>dropout_1_21</b><br/>2x512 (4.1 KB)<br/>@pair_classifier.2> color=black fillcolor=white fontcolor=black ordering=out shape=box style="filled,solid"]
+	linear_2_22 [label=<<b>linear_2_22</b><br/>2x6 (176 B)<br/>params: 6x512, x6<br/>@pair_classifier.3> color=black fillcolor="#E6E6E6" fontcolor=black ordering=out shape=box style="filled,solid"]
+	linear_2_22 -> output_1 [arrowsize=.7 color=black fontcolor=black labelfontsize=8 style=solid]
+	output_1 [label=<<b>output_1</b><br/>2x6 (176 B)<br/>@output> color=black fillcolor="#ff9999" fontcolor=black ordering=out shape=oval style="filled,solid"]
+	{
+		rank=sink
+		output_1
+	}
+	subgraph cluster_pair_encoder_pass1 {
+		fillcolor=white label=<<B>@pair_encoder</B><br align='left'/>(ViewPairEncoder)<br align='left'/>> labelloc=b penwidth=5.0 style="filled,solid"
+		getitem_1_1 -> conv3d_1_2pass1 [arrowsize=.7 color=black fontcolor=black labelfontsize=8 style=solid]
+		flatten_1_16pass1 -> cat_1_18 [arrowsize=.7 color=black fontcolor=black labelfontsize=8 style=solid]
+		getitem_2_17 -> conv3d_1_2pass2 [arrowsize=.7 color=black fontcolor=black labelfontsize=8 style=solid]
+		flatten_1_16pass2 -> cat_1_18 [arrowsize=.7 color=black fontcolor=black labelfontsize=8 style=solid]
+	}
+	subgraph cluster_pair_classifier_pass1 {
+		fillcolor=white label=<<B>@pair_classifier</B><br align='left'/>(Layers)<br align='left'/>> labelloc=b penwidth=5.0 style="filled,solid"
+		linear_1_19 -> relu_5_20 [arrowsize=.7 color=black fontcolor=black labelfontsize=8 style=solid]
+		relu_5_20 -> dropout_1_21 [arrowsize=.7 color=black fontcolor=black labelfontsize=8 style=solid]
+		dropout_1_21 -> linear_2_22 [arrowsize=.7 color=black fontcolor=black labelfontsize=8 style=solid]
+	}
+	subgraph cluster_pair_encoder_pass1 {
+		subgraph "cluster_pair_encoder.view_encoder_pass1" {
+			fillcolor=white label=<<B>@pair_encoder.view_encoder:1</B><br align='left'/>(Layers)<br align='left'/>> labelloc=b penwidth=3.5 style="filled,solid"
+			conv3d_1_2pass1 -> batchnorm_1_3pass1 [arrowsize=.7 color=black fontcolor=black labelfontsize=8 style=solid]
+			batchnorm_1_3pass1 -> relu_1_4pass1 [arrowsize=.7 color=black fontcolor=black labelfontsize=8 style=solid]
+			relu_1_4pass1 -> conv3d_2_5pass1 [arrowsize=.7 color=black fontcolor=black labelfontsize=8 style=solid]
+			conv3d_2_5pass1 -> batchnorm_2_6pass1 [arrowsize=.7 color=black fontcolor=black labelfontsize=8 style=solid]
+			batchnorm_2_6pass1 -> relu_2_7pass1 [arrowsize=.7 color=black fontcolor=black labelfontsize=8 style=solid]
+			relu_2_7pass1 -> maxpool3d_1_8pass1 [arrowsize=.7 color=black fontcolor=black labelfontsize=8 style=solid]
+			maxpool3d_1_8pass1 -> conv3d_3_9pass1 [arrowsize=.7 color=black fontcolor=black labelfontsize=8 style=solid]
+			conv3d_3_9pass1 -> batchnorm_3_10pass1 [arrowsize=.7 color=black fontcolor=black labelfontsize=8 style=solid]
+			batchnorm_3_10pass1 -> relu_3_11pass1 [arrowsize=.7 color=black fontcolor=black labelfontsize=8 style=solid]
+			relu_3_11pass1 -> conv3d_4_12pass1 [arrowsize=.7 color=black fontcolor=black labelfontsize=8 style=solid]
+			conv3d_4_12pass1 -> batchnorm_4_13pass1 [arrowsize=.7 color=black fontcolor=black labelfontsize=8 style=solid]
+			batchnorm_4_13pass1 -> relu_4_14pass1 [arrowsize=.7 color=black fontcolor=black labelfontsize=8 style=solid]
+			relu_4_14pass1 -> maxpool3d_2_15pass1 [arrowsize=.7 color=black fontcolor=black labelfontsize=8 style=solid]
+			maxpool3d_2_15pass1 -> flatten_1_16pass1 [arrowsize=.7 color=black fontcolor=black labelfontsize=8 style=solid]
+		}
+	}
+	subgraph cluster_pair_encoder_pass1 {
+		subgraph "cluster_pair_encoder.view_encoder_pass2" {
+			fillcolor=white label=<<B>@pair_encoder.view_encoder:2</B><br align='left'/>(Layers)<br align='left'/>> labelloc=b penwidth=3.5 style="filled,solid"
+			conv3d_1_2pass2 -> batchnorm_1_3pass2 [arrowsize=.7 color=black fontcolor=black labelfontsize=8 style=solid]
+			batchnorm_1_3pass2 -> relu_1_4pass2 [arrowsize=.7 color=black fontcolor=black labelfontsize=8 style=solid]
+			relu_1_4pass2 -> conv3d_2_5pass2 [arrowsize=.7 color=black fontcolor=black labelfontsize=8 style=solid]
+			conv3d_2_5pass2 -> batchnorm_2_6pass2 [arrowsize=.7 color=black fontcolor=black labelfontsize=8 style=solid]
+			batchnorm_2_6pass2 -> relu_2_7pass2 [arrowsize=.7 color=black fontcolor=black labelfontsize=8 style=solid]
+			relu_2_7pass2 -> maxpool3d_1_8pass2 [arrowsize=.7 color=black fontcolor=black labelfontsize=8 style=solid]
+			maxpool3d_1_8pass2 -> conv3d_3_9pass2 [arrowsize=.7 color=black fontcolor=black labelfontsize=8 style=solid]
+			conv3d_3_9pass2 -> batchnorm_3_10pass2 [arrowsize=.7 color=black fontcolor=black labelfontsize=8 style=solid]
+			batchnorm_3_10pass2 -> relu_3_11pass2 [arrowsize=.7 color=black fontcolor=black labelfontsize=8 style=solid]
+			relu_3_11pass2 -> conv3d_4_12pass2 [arrowsize=.7 color=black fontcolor=black labelfontsize=8 style=solid]
+			conv3d_4_12pass2 -> batchnorm_4_13pass2 [arrowsize=.7 color=black fontcolor=black labelfontsize=8 style=solid]
+			batchnorm_4_13pass2 -> relu_4_14pass2 [arrowsize=.7 color=black fontcolor=black labelfontsize=8 style=solid]
+			relu_4_14pass2 -> maxpool3d_2_15pass2 [arrowsize=.7 color=black fontcolor=black labelfontsize=8 style=solid]
+			maxpool3d_2_15pass2 -> flatten_1_16pass2 [arrowsize=.7 color=black fontcolor=black labelfontsize=8 style=solid]
+		}
+	}
+	subgraph cluster_pair_classifier_pass1 {
+		subgraph "cluster_pair_classifier.0_pass1" {
+			fillcolor=white label=<<B>@pair_classifier.0</B><br align='left'/>(Linear)<br align='left'/>> labelloc=b penwidth=3.5 style="filled,dashed"
+		}
+	}
+	subgraph cluster_pair_classifier_pass1 {
+		subgraph "cluster_pair_classifier.1_pass1" {
+			fillcolor=white label=<<B>@pair_classifier.1</B><br align='left'/>(ReLU)<br align='left'/>> labelloc=b penwidth=3.5 style="filled,dashed"
+		}
+	}
+	subgraph cluster_pair_classifier_pass1 {
+		subgraph "cluster_pair_classifier.2_pass1" {
+			fillcolor=white label=<<B>@pair_classifier.2</B><br align='left'/>(Dropout)<br align='left'/>> labelloc=b penwidth=3.5 style="filled,dashed"
+		}
+	}
+	subgraph cluster_pair_classifier_pass1 {
+		subgraph "cluster_pair_classifier.3_pass1" {
+			fillcolor=white label=<<B>@pair_classifier.3</B><br align='left'/>(Linear)<br align='left'/>> labelloc=b penwidth=3.5 style="filled,dashed"
+		}
+	}
+	subgraph cluster_pair_encoder_pass1 {
+		subgraph "cluster_pair_encoder.view_encoder_pass1" {
+			subgraph "cluster_pair_encoder.view_encoder.0_pass1" {
+				fillcolor=white label=<<B>@pair_encoder.view_encoder.0:1</B><br align='left'/>(Conv3d)<br align='left'/>> labelloc=b penwidth=2.0 style="filled,dashed"
+			}
+		}
+	}
+	subgraph cluster_pair_encoder_pass1 {
+		subgraph "cluster_pair_encoder.view_encoder_pass1" {
+			subgraph "cluster_pair_encoder.view_encoder.1_pass1" {
+				fillcolor=white label=<<B>@pair_encoder.view_encoder.1:1</B><br align='left'/>(BatchNorm3d)<br align='left'/>> labelloc=b penwidth=2.0 style="filled,dashed"
+			}
+		}
+	}
+	subgraph cluster_pair_encoder_pass1 {
+		subgraph "cluster_pair_encoder.view_encoder_pass1" {
+			subgraph "cluster_pair_encoder.view_encoder.2_pass1" {
+				fillcolor=white label=<<B>@pair_encoder.view_encoder.2:1</B><br align='left'/>(ReLU)<br align='left'/>> labelloc=b penwidth=2.0 style="filled,dashed"
+			}
+		}
+	}
+	subgraph cluster_pair_encoder_pass1 {
+		subgraph "cluster_pair_encoder.view_encoder_pass1" {
+			subgraph "cluster_pair_encoder.view_encoder.3_pass1" {
+				fillcolor=white label=<<B>@pair_encoder.view_encoder.3:1</B><br align='left'/>(Conv3d)<br align='left'/>> labelloc=b penwidth=2.0 style="filled,dashed"
+			}
+		}
+	}
+	subgraph cluster_pair_encoder_pass1 {
+		subgraph "cluster_pair_encoder.view_encoder_pass1" {
+			subgraph "cluster_pair_encoder.view_encoder.4_pass1" {
+				fillcolor=white label=<<B>@pair_encoder.view_encoder.4:1</B><br align='left'/>(BatchNorm3d)<br align='left'/>> labelloc=b penwidth=2.0 style="filled,dashed"
+			}
+		}
+	}
+	subgraph cluster_pair_encoder_pass1 {
+		subgraph "cluster_pair_encoder.view_encoder_pass1" {
+			subgraph "cluster_pair_encoder.view_encoder.5_pass1" {
+				fillcolor=white label=<<B>@pair_encoder.view_encoder.5:1</B><br align='left'/>(ReLU)<br align='left'/>> labelloc=b penwidth=2.0 style="filled,dashed"
+			}
+		}
+	}
+	subgraph cluster_pair_encoder_pass1 {
+		subgraph "cluster_pair_encoder.view_encoder_pass1" {
+			subgraph "cluster_pair_encoder.view_encoder.6_pass1" {
+				fillcolor=white label=<<B>@pair_encoder.view_encoder.6:1</B><br align='left'/>(MaxPool3d)<br align='left'/>> labelloc=b penwidth=2.0 style="filled,dashed"
+			}
+		}
+	}
+	subgraph cluster_pair_encoder_pass1 {
+		subgraph "cluster_pair_encoder.view_encoder_pass1" {
+			subgraph "cluster_pair_encoder.view_encoder.7_pass1" {
+				fillcolor=white label=<<B>@pair_encoder.view_encoder.7:1</B><br align='left'/>(Conv3d)<br align='left'/>> labelloc=b penwidth=2.0 style="filled,dashed"
+			}
+		}
+	}
+	subgraph cluster_pair_encoder_pass1 {
+		subgraph "cluster_pair_encoder.view_encoder_pass1" {
+			subgraph "cluster_pair_encoder.view_encoder.8_pass1" {
+				fillcolor=white label=<<B>@pair_encoder.view_encoder.8:1</B><br align='left'/>(BatchNorm3d)<br align='left'/>> labelloc=b penwidth=2.0 style="filled,dashed"
+			}
+		}
+	}
+	subgraph cluster_pair_encoder_pass1 {
+		subgraph "cluster_pair_encoder.view_encoder_pass1" {
+			subgraph "cluster_pair_encoder.view_encoder.9_pass1" {
+				fillcolor=white label=<<B>@pair_encoder.view_encoder.9:1</B><br align='left'/>(ReLU)<br align='left'/>> labelloc=b penwidth=2.0 style="filled,dashed"
+			}
+		}
+	}
+	subgraph cluster_pair_encoder_pass1 {
+		subgraph "cluster_pair_encoder.view_encoder_pass1" {
+			subgraph "cluster_pair_encoder.view_encoder.10_pass1" {
+				fillcolor=white label=<<B>@pair_encoder.view_encoder.10:1</B><br align='left'/>(Conv3d)<br align='left'/>> labelloc=b penwidth=2.0 style="filled,dashed"
+			}
+		}
+	}
+	subgraph cluster_pair_encoder_pass1 {
+		subgraph "cluster_pair_encoder.view_encoder_pass1" {
+			subgraph "cluster_pair_encoder.view_encoder.11_pass1" {
+				fillcolor=white label=<<B>@pair_encoder.view_encoder.11:1</B><br align='left'/>(BatchNorm3d)<br align='left'/>> labelloc=b penwidth=2.0 style="filled,dashed"
+			}
+		}
+	}
+	subgraph cluster_pair_encoder_pass1 {
+		subgraph "cluster_pair_encoder.view_encoder_pass1" {
+			subgraph "cluster_pair_encoder.view_encoder.12_pass1" {
+				fillcolor=white label=<<B>@pair_encoder.view_encoder.12:1</B><br align='left'/>(ReLU)<br align='left'/>> labelloc=b penwidth=2.0 style="filled,dashed"
+			}
+		}
+	}
+	subgraph cluster_pair_encoder_pass1 {
+		subgraph "cluster_pair_encoder.view_encoder_pass1" {
+			subgraph "cluster_pair_encoder.view_encoder.13_pass1" {
+				fillcolor=white label=<<B>@pair_encoder.view_encoder.13:1</B><br align='left'/>(MaxPool3d)<br align='left'/>> labelloc=b penwidth=2.0 style="filled,dashed"
+			}
+		}
+	}
+	subgraph cluster_pair_encoder_pass1 {
+		subgraph "cluster_pair_encoder.view_encoder_pass1" {
+			subgraph "cluster_pair_encoder.view_encoder.14_pass1" {
+				fillcolor=white label=<<B>@pair_encoder.view_encoder.14:1</B><br align='left'/>(Flatten)<br align='left'/>> labelloc=b penwidth=2.0 style="filled,dashed"
+			}
+		}
+	}
+	subgraph cluster_pair_encoder_pass1 {
+		subgraph "cluster_pair_encoder.view_encoder_pass2" {
+			subgraph "cluster_pair_encoder.view_encoder.0_pass2" {
+				fillcolor=white label=<<B>@pair_encoder.view_encoder.0:2</B><br align='left'/>(Conv3d)<br align='left'/>> labelloc=b penwidth=2.0 style="filled,dashed"
+			}
+		}
+	}
+	subgraph cluster_pair_encoder_pass1 {
+		subgraph "cluster_pair_encoder.view_encoder_pass2" {
+			subgraph "cluster_pair_encoder.view_encoder.1_pass2" {
+				fillcolor=white label=<<B>@pair_encoder.view_encoder.1:2</B><br align='left'/>(BatchNorm3d)<br align='left'/>> labelloc=b penwidth=2.0 style="filled,dashed"
+			}
+		}
+	}
+	subgraph cluster_pair_encoder_pass1 {
+		subgraph "cluster_pair_encoder.view_encoder_pass2" {
+			subgraph "cluster_pair_encoder.view_encoder.2_pass2" {
+				fillcolor=white label=<<B>@pair_encoder.view_encoder.2:2</B><br align='left'/>(ReLU)<br align='left'/>> labelloc=b penwidth=2.0 style="filled,dashed"
+			}
+		}
+	}
+	subgraph cluster_pair_encoder_pass1 {
+		subgraph "cluster_pair_encoder.view_encoder_pass2" {
+			subgraph "cluster_pair_encoder.view_encoder.3_pass2" {
+				fillcolor=white label=<<B>@pair_encoder.view_encoder.3:2</B><br align='left'/>(Conv3d)<br align='left'/>> labelloc=b penwidth=2.0 style="filled,dashed"
+			}
+		}
+	}
+	subgraph cluster_pair_encoder_pass1 {
+		subgraph "cluster_pair_encoder.view_encoder_pass2" {
+			subgraph "cluster_pair_encoder.view_encoder.4_pass2" {
+				fillcolor=white label=<<B>@pair_encoder.view_encoder.4:2</B><br align='left'/>(BatchNorm3d)<br align='left'/>> labelloc=b penwidth=2.0 style="filled,dashed"
+			}
+		}
+	}
+	subgraph cluster_pair_encoder_pass1 {
+		subgraph "cluster_pair_encoder.view_encoder_pass2" {
+			subgraph "cluster_pair_encoder.view_encoder.5_pass2" {
+				fillcolor=white label=<<B>@pair_encoder.view_encoder.5:2</B><br align='left'/>(ReLU)<br align='left'/>> labelloc=b penwidth=2.0 style="filled,dashed"
+			}
+		}
+	}
+	subgraph cluster_pair_encoder_pass1 {
+		subgraph "cluster_pair_encoder.view_encoder_pass2" {
+			subgraph "cluster_pair_encoder.view_encoder.6_pass2" {
+				fillcolor=white label=<<B>@pair_encoder.view_encoder.6:2</B><br align='left'/>(MaxPool3d)<br align='left'/>> labelloc=b penwidth=2.0 style="filled,dashed"
+			}
+		}
+	}
+	subgraph cluster_pair_encoder_pass1 {
+		subgraph "cluster_pair_encoder.view_encoder_pass2" {
+			subgraph "cluster_pair_encoder.view_encoder.7_pass2" {
+				fillcolor=white label=<<B>@pair_encoder.view_encoder.7:2</B><br align='left'/>(Conv3d)<br align='left'/>> labelloc=b penwidth=2.0 style="filled,dashed"
+			}
+		}
+	}
+	subgraph cluster_pair_encoder_pass1 {
+		subgraph "cluster_pair_encoder.view_encoder_pass2" {
+			subgraph "cluster_pair_encoder.view_encoder.8_pass2" {
+				fillcolor=white label=<<B>@pair_encoder.view_encoder.8:2</B><br align='left'/>(BatchNorm3d)<br align='left'/>> labelloc=b penwidth=2.0 style="filled,dashed"
+			}
+		}
+	}
+	subgraph cluster_pair_encoder_pass1 {
+		subgraph "cluster_pair_encoder.view_encoder_pass2" {
+			subgraph "cluster_pair_encoder.view_encoder.9_pass2" {
+				fillcolor=white label=<<B>@pair_encoder.view_encoder.9:2</B><br align='left'/>(ReLU)<br align='left'/>> labelloc=b penwidth=2.0 style="filled,dashed"
+			}
+		}
+	}
+	subgraph cluster_pair_encoder_pass1 {
+		subgraph "cluster_pair_encoder.view_encoder_pass2" {
+			subgraph "cluster_pair_encoder.view_encoder.10_pass2" {
+				fillcolor=white label=<<B>@pair_encoder.view_encoder.10:2</B><br align='left'/>(Conv3d)<br align='left'/>> labelloc=b penwidth=2.0 style="filled,dashed"
+			}
+		}
+	}
+	subgraph cluster_pair_encoder_pass1 {
+		subgraph "cluster_pair_encoder.view_encoder_pass2" {
+			subgraph "cluster_pair_encoder.view_encoder.11_pass2" {
+				fillcolor=white label=<<B>@pair_encoder.view_encoder.11:2</B><br align='left'/>(BatchNorm3d)<br align='left'/>> labelloc=b penwidth=2.0 style="filled,dashed"
+			}
+		}
+	}
+	subgraph cluster_pair_encoder_pass1 {
+		subgraph "cluster_pair_encoder.view_encoder_pass2" {
+			subgraph "cluster_pair_encoder.view_encoder.12_pass2" {
+				fillcolor=white label=<<B>@pair_encoder.view_encoder.12:2</B><br align='left'/>(ReLU)<br align='left'/>> labelloc=b penwidth=2.0 style="filled,dashed"
+			}
+		}
+	}
+	subgraph cluster_pair_encoder_pass1 {
+		subgraph "cluster_pair_encoder.view_encoder_pass2" {
+			subgraph "cluster_pair_encoder.view_encoder.13_pass2" {
+				fillcolor=white label=<<B>@pair_encoder.view_encoder.13:2</B><br align='left'/>(MaxPool3d)<br align='left'/>> labelloc=b penwidth=2.0 style="filled,dashed"
+			}
+		}
+	}
+	subgraph cluster_pair_encoder_pass1 {
+		subgraph "cluster_pair_encoder.view_encoder_pass2" {
+			subgraph "cluster_pair_encoder.view_encoder.14_pass2" {
+				fillcolor=white label=<<B>@pair_encoder.view_encoder.14:2</B><br align='left'/>(Flatten)<br align='left'/>> labelloc=b penwidth=2.0 style="filled,dashed"
+			}
+		}
+	}
+}

@@ -65,10 +65,14 @@ Ligand binding affinity: state-of-the-art
 - It'd be nice if I could say that my model out-performed the state of the art 
   in the ligand binding task.
 
-- According the [Townshend2020]_, the state-of-the-art is [Jiminez2018]_:
+- According the [Townshend2022]_, the state-of-the-art is [Jimenez2018]_:
 
   - This paper is pretty old by now, so I should still look to see if there's 
     something more recent.
+
+  - A big caveat is that this paper (like many others based on the PDBBind 
+    dataset) used a validation set composed of proteins that are also in the 
+    training set.  
 
   - How does it work?
 
@@ -93,7 +97,7 @@ Ligand binding affinity: state-of-the-art
 
   - Specifying where the ligand is:
 
-    - [Jiminez2018]_ basically defines distinct protein/ligand versions of each 
+    - [Jimenez2018]_ basically defines distinct protein/ligand versions of each 
       atom type.  This seems less-than-ideal to me, since the proteins atoms 
       aren't actually any different than ligand atoms.  Maybe I do something 
       similar by encoding the protein and ligand separately, then combining 
@@ -108,7 +112,7 @@ Ligand binding affinity: state-of-the-art
       and manually set the weights to (i) use the atomic channels as before and 
       (ii) give very little weight to the new ligand mask channel.
 
-  - How to out-perform [Jiminez2018]_:
+  - How to out-perform [Jimenez2018]_:
 
     - Pre-training: Implement an architecture similar to theirs.
 
