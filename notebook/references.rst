@@ -2,6 +2,7 @@ References
 ==========
 
 .. [Anand2022] :doi:`10.1038/s41467-022-28313-9`
+.. [Capecchi2020] :doi:`10.1186/s13321-020-00445-4`
 .. [Carreira2018] :doi:`10.48550/arXiv.1705.07750`
 .. [CeretoMassague2013] :doi:`10.1186/1758-2946-5-36`
 .. [Cesa2022] https://openreview.net/forum?id=WE4qe9xlnQw
@@ -9,6 +10,7 @@ References
 .. [Derevyanko2018] :doi:`10.1093/bioinformatics/bty494`
 .. [Doersch2016] :doi:`10.48550/arXiv.1505.05192`
 .. [Dosovitskiy2021] :doi:`10.48550/arXiv.2010.11929`
+.. [Fowler2020] :doi:`10.1038/s41467-020-20177-1`
 .. [Hara2018] :doi:`10.1109/CVPR.2018.00685`
 .. [He2015] :doi:`10.48550/arXiv.1512.03385`
 .. [He2021] :doi:`10.48550/arXiv.2111.06377`
@@ -22,6 +24,8 @@ References
 .. [Krizhevsky2012] :doi:`10.1145/3065386`
 .. [Liu2015] :doi:`10.1093/bioinformatics/btu626`
 .. [Maddhuri2019] :doi:`10.1038/s41592-019-0500-1`
+.. [Mahmoud2020] :doi:`10.1038/s42004-020-0261-x`
+.. [Malhotra2019] :doi:`10.1016/j.sbi.2019.05.024`
 .. [Maturana2015a] :doi:`10.1109/ICRA.2015.7139679`
 .. [Maturana2015b] :doi:`10.1109/IROS.2015.7353481`
 .. [Miyaguchi2021] :doi:`10.1038/s41598-021-02948-y`
@@ -30,6 +34,7 @@ References
 .. [Ragoza2017] :doi:`10.1021/acs.jcim.6b00740`
 .. [Ramakrishnan2014] :doi:`10.1038/sdata.2014.22`
 .. [Sener2019] :doi:`10.48550/arXiv.1810.04650`
+.. [Shao2022] :doi:`10.1016/j.str.2022.08.004`
 .. [Simonyan2015] :doi:`10.48550/arXiv.1409.1556`
 .. [Strobl2016] :doi:`10.1016/j.jcp.2016.02.003`
 .. [Szegedy2014] :doi:`10.48550/arXiv.1409.4842`
@@ -38,8 +43,10 @@ References
 .. [Tran2015] :doi:`10.48550/arXiv.1412.0767`
 .. [Wallach2015] :doi:`10.48550/arXiv.1510.02855`
 .. [Wang2003] :doi:`10.1093/bioinformatics/btg224`
+.. [Wang2015] :doi:`10.1002/pro.2639`
 .. [Wang2020] :doi:`10.1093/bioinformatics/btz870`
 .. [Weiler2018] :doi:`10.48550/arXiv.1807.02547`
+.. [Williams2018] :doi:`10.1002/pro.3330`
 .. [Xie2017] :doi:`10.48550/arXiv.1611.05431`
 .. [Zhang2020] :doi:`10.1002/prot.25868`
 .. [Zhou2020] :doi:`10.48550/arXiv.1812.07035`

@@ -41,3 +41,39 @@ Results
 - Not shown above, but the difficult prediction (without aggregation) is 
   reasonably flat.  There's a peak for very low difficulties, and a small peak 
   for 50% difficulty.
+
+2024/06/13: Train with easy subsets
+-----------------------------------
+.. figure:: cnn_curriculum.svg
+
+- The model is able to learn on some easier subsets of the dataset.
+
+  - Specifically, the "easiest" 40%, 60%, or 70% of examples can be learned.
+
+  - I'm surprised that the easiest subsets didn't work.
+    
+    - I expected that the smallest/easiest datasets would learn, and at some 
+      point the dataset would become too difficult.  Instead, there seems to be 
+      a sweet-spot where learning occurs.
+
+    - Maybe the easiest examples are too idiosyncratic to the ResNet, and a 
+      broader set of examples is needed to include enough that are genuinely 
+      "easy".
+
+  - I'm surprised that 40% and 60% work, but 50% doesn't.
+
+    - The difference is pretty stark: learning vs no learning.
+
+    - This makes me think that it may have been a fluke that I got these exact 
+      results.  Perhaps with different random initializations, I'd get 
+      different results.
+
+  - I suspect that this training protocol is just fragile, and that I won't be 
+    able to make it one-size-fits-all.  Instead, users will probably have to 
+    tune hyperparameters to find those that work for them.  All I can do is to 
+    provide the necessary knobs to make this tuning easy.
+
+  - Note that these results are all based on the noise-free version of the 
+    dataset.  :expt:`73` shows that is is possible to train a ResNet with a 
+    small amount of noise, so I might want to try that.
+

@@ -58,7 +58,7 @@ radius of 0.001 to mimic point atoms.
   function of the rotation of that input around the z-axis.  Perfect rotational 
   invariance would be represented as a straight, horizontal line.
 
-- The ESCNN models are slightly more invariance than the CNN models, but the 
+- The ESCNN models are slightly more invariant than the CNN models, but the 
   difference isn't as big as I was hoping for.
 
   - Note that the ESCNN traces often have a pattern that repeats four times.  

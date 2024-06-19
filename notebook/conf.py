@@ -20,6 +20,7 @@ exclude_patterns = [ #
 needs_sphinx = '4.0'
 
 extensions = [ #
+    'sphinx_math_dollar',
     'sphinx.ext.mathjax',
     'sphinx.ext.viewcode',
     'sphinx.ext.intersphinx',
@@ -27,9 +28,8 @@ extensions = [ #
     'sphinxcontrib.programoutput',
     'sphinxcontrib.video',
     'exmemo.sphinx.notebook',
-    'exmemo.sphinx.biology',
-    'exmemo.sphinx.general',
-    'sphinx_math_dollar',
+    'exmemo.sphinx.doi',
+    'exmemo.sphinx.datatable',
 ]
 
 # https://gist.github.com/bskinn/0e164963428d4b51017cebdb6cda5209
@@ -59,12 +59,6 @@ myst_enable_extensions = [
 # Overload default dollar delimiter, so it doesn't get confused when we use 
 # that delimiter in sphinx.  See:
 # https://www.sympy.org/sphinx-math-dollar/
-mathjax_config = {
-    'tex2jax': {
-        'inlineMath': [ ["\\(","\\)"] ],
-        'displayMath': [["\\[","\\]"] ],
-    },
-}
 mathjax3_config = {
   "tex": {
     "inlineMath": [['\\(', '\\)']],
@@ -75,8 +69,9 @@ mathjax3_config = {
 from sphinx_rtd_theme import get_html_theme_path
 from exmemo.sphinx import favicon_path
 
-html_theme = "sphinx_rtd_theme"
-html_theme_path = [get_html_theme_path()]
+#html_theme = "sphinx_rtd_theme"
+#html_theme_path = [get_html_theme_path()]
+html_theme = "furo"
 html_favicon = str(favicon_path)
 html_theme_options = {}
 html_static_path = ['.static']

@@ -56,7 +56,7 @@ Results
 
 2024/06/12 --- Add noise
 ------------------------
-.. figure:: escnn_noise.svg
+.. figure:: escnn_noise_v1.svg
 
 - Adding noise does not have a strong effect on the performance of the 
   equivariant ResNets.
@@ -68,10 +68,10 @@ Results
     but the difference is only ≈3% accuracy.  There's no difference between the 
     1Å and 2Å padding, nor between any of the rotation angles.
 
-  - In retrospect, maybe I should have used the same validation set (e.g.  
-    without noise) for all of these training runs, so that the validation 
-    comparisons would be fair.  As it is, the worst performance is on the most 
-    difficult set, which isn't surprising.
+- In retrospect, maybe I should have used the same validation set (e.g.  
+  without noise) for all of these training runs, so that the validation 
+  comparisons would be fair.  As it is, the worst performance is on the most 
+  difficult set, which isn't surprising.
 
 - Most of the training runs ran out of memory before reaching 50 epochs.
 
@@ -85,6 +85,25 @@ Results
     I've run without memory errors.  Maybe ESCNN loads some big data 
     structures.  Regardless, the only thing to do is to request more memory.
 
+2024/06/14 --- Add more noise
+-----------------------------
+.. figure:: escnn_noise_v2.svg
+
+- The model is still capable of learning the dataset with up to 8Å of 
+  translational noise and 40° of rotational noise.
+
+  - This is a pretty significant amount of noise.
+  - I'm not comfortable adding any more.  The dataset has neighbor regions 
+    separated by 30Å, and more noise would mean pushing beyond that range and 
+    potentially getting examples that are too easy because they're only filled 
+    in on one side.
+
+- As before, more noise results in worse training and validation performance, 
+  but the models aren't really comparable because the validation sets also have 
+  different amounts of noise.
+
+  - But the real test will be how well the models fine-tune.
+
 2024/06/13 --- Train on LBA
 ---------------------------
 .. figure:: escnn_lba.svg
@@ -92,7 +111,7 @@ Results
 - A randomly-initialized equivariant ResNet is able to learn the LBA dataset 
   adequately well.
 
-  - The best models tested by [Townsend2020]_ achieved either RMSD=1.4 or 
+  - The best models tested by [Townshend2022]_ achieved either RMSD=1.4 or 
     Pearson R=0.57.  An important caveat is that models trained using the 
     "standard" validation set (i.e. most third-party models) weren't included 
     in this comparison, because that validation set is comprised of proteins 

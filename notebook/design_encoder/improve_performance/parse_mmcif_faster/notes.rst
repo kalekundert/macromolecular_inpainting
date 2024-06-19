@@ -14,6 +14,13 @@ Ideas
 
 - Use the C++ readcif library.
 
+.. update:: 2024/03/27
+
+  Since I worked on this, I've come to strongly believe that ``gemmi`` is the 
+  best library for parsing mmCIF files.  Of course, it's still best to do this 
+  parsing ahead of training time, but I wouldn't use ``pdbecif`` for anything 
+  anymore.
+
 Results
 =======
 

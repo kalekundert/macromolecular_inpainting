@@ -7,11 +7,12 @@ motivations:
 
 - When I was debugging the SIGABRT issue, there were some indications that 
   numba was responsible.  I think that the real reason ended up being that the 
-  data loader subprocesses were forked rather than spawned.  This 
+  data loader subprocesses were forked rather than spawned, but I was motivated 
+  to "simplify" the code anyways.
 
 - Numba has a reputation for being hard to install.  Even though I haven't had
   trouble with it, removing the numba dependency might make life easier for 
-  end-users (down the road).
+  (eventual) end-users.
 
 - The C++ implementation might be faster.  Numba should already be pretty fast, 
   but Eigen is probably better at eliminating temporary buffers (through 
@@ -46,7 +47,6 @@ Results
         81307    0.793    0.000    1.236    0.000 voxelize.py:316(_calc_sphere_cube_overlap_volume_A3)
         81307    0.394    0.000    0.394    0.000 {built-in method overlap._overlap.overlap}
 
-
   - These results are from the most recent commit before the C++ 
     reimplementation, to make the comparison as fair as possible.  That said, 
     they are exactly in line with the results from :expt:`13`.
@@ -69,8 +69,7 @@ Results
            32    0.001    0.000    0.990    0.031 classification.py:36(__getitem__)
            64    0.015    0.000    0.512    0.008 voxelize.py:49(image_from_atoms)
            11    0.000    0.000    0.282    0.026 __init__.py:1(<module>)
-        11464    0.264    0.000    0.264    0.000 {built-in method 
-        atompaint.datasets._voxelize._add_atom_to_image}
+        11464    0.264    0.000    0.264    0.000 {built-in method atompaint.datasets._voxelize._add_atom_to_image}
 
 - The C++ implementation of `_add_atom_to_image` is 8.34x faster than the numba 
   version.  That ends up making the whole data loading subroutine (i.e. the 

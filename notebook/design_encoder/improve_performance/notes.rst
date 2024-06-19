@@ -4,7 +4,7 @@ Improve performance
 
 When I started trying to train a model, I found it took nearly a minute to 
 process a minibatch of 32 inputs.  In this experiment, I document my efforts to 
-improve it.
+improve this time.
 
 Diagnostics
 ===========
