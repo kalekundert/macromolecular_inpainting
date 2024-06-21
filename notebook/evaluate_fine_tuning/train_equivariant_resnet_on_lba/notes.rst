@@ -132,3 +132,44 @@ Results
     performance, but by the same argument the p=0.4 model would be the worst.  
     There's no clear correlation between dropout rate and validation 
     performance.
+
+2024/06/20 --- Fine-tune on LBA
+-------------------------------
+.. figure:: finetune_escnn.svg
+
+- Pre-training with noisier data leads to worse performance after fine-tuning.
+
+  - This is the opposite of what I expected.  I thought that pre-training with 
+    noisier data would force the model to be more general, which would in turn 
+    lead to better fine-tuning performance.
+
+.. figure:: finetune_vs_random_init.svg
+
+- The fine-tuned model doesn't perform significantly better than the randomly 
+  initialized model.
+
+  - The MAE performance might be better, but I think the difference, if any, is 
+    within the noise.
+
+  - The Pearson R correlation is slightly better.
+
+  - I didn't measure RMSE for the random-initialization model.
+
+- The fine-tuned model takes longer to start improving.
+
+  - The random-initialization model starts improving from the very beginning of 
+    the training run, while the fine-tuned model is stagnant for the first ≈10 
+    epochs.
+
+  - I'm worried that this might be an indication that the pre-trained model is 
+    counter-productive, and basically needs to be wiped clean before training 
+    can recommence.
+
+  - It might also be an indication that I need to thaw the pre-trained 
+    parameters more carefully.  In other words, maybe I'd get better results if 
+    I only allow the MLP to train in the beginning.
+
+- The random-initialization training run got killed early, which muddies the 
+  comparison a bit.  I might want to rerun that.
+
+

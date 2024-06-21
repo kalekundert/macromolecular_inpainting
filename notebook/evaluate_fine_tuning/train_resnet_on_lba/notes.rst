@@ -15,17 +15,23 @@ Results
 --------------------------------
 .. figure:: finetune_resnet_16A_v1.svg
 
-- All of the models overfit the data.
+- All of the models perform poorly and overfit the data.
 
-  - This isn't too surprising, because these models are complicated and the 
-    dataset is small.
+  - The MAE values are much worse than for a plain CNN.
 
-- The pre-trained models 
+  - Overfitting isn't too surprising, because these models are complicated and 
+    the dataset is small.
 
-- Things to try:
+- Pre-training leads to significantly worse performance on the validation set.
 
-  - More dropout
-  - Freeze pre-trained layers
+  - This is the opposite of what I expected.  
+  - Presumably this means that the pre-training puts the model in an unhelpful 
+    local minimum.  Maybe it would be helpful to shorten the length of the 
+    pre-training?  Not sure.
+
+- Given that even the random-initialization model performs worse than a plain 
+  CNN, I suspect that I need to find a better baseline model before I can 
+  expect fine-tuning to give good results.
 
 2024/06/13: Baseline LBA
 ------------------------
@@ -76,3 +82,31 @@ Results
 
   - Probably the next thing to try is to really decrease the number of 
     channels.
+
+2024/06/19: Fewer parameters
+----------------------------
+.. figure:: resnet_lba_fewer_params.svg
+
+- These models all perform much better than those from 6/13.
+
+  - This doesn't make sense.  The orange model (64 starting channels, no 
+    maximum number of channels, no bottleneck) here should be the same as the 
+    0.5 drop rate, 27 voxel, ligand channel model from before.
+
+  - I double-checked the code for unexpected differences:
+
+    - The datasets are the same.
+    - The numbers of epochs are different, but the performance differs even in 
+      the first epochs.
+    - The hidden layers of the MLP are different sizes: 512 vs 128.
+
+    - I refactored my ResNet implementation pretty substantially between these 
+      two runs, so I looked at the DAGs for each to confirm that nothing had 
+      accidentally changed.  Aside from the differences mentioned above, the 
+      models are identical.
+
+  - It seems like the size of the MLP hidden layer might be an important 
+    hyperparameter?
+
+- Bottleneck models (which have the fewest parameters) perform worse on the 
+  training data, but the same on the validation data.
