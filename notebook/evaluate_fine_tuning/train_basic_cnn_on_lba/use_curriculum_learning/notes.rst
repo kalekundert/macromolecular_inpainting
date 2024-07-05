@@ -77,3 +77,16 @@ Results
     dataset.  :expt:`73` shows that is is possible to train a ResNet with a 
     small amount of noise, so I might want to try that.
 
+2024/06/20: Train with whole dataset
+------------------------------------
+.. figure:: cnn_curriculum_2.svg
+
+- The model is now able to learn on the whole "gym" dataset.
+
+  - It continues improving throughout the training run, but at a slower rate 
+    than it was at the end of the pre-training run (0.005%/epoch vs 
+    0.025%/epoch).
+
+  - The performance of the final CNN model (36% accuracy on the validation set) 
+    is worse than that of the ResNets (≈60%) and the equivariant CNNs (≈80%).  
+    But it's better than random guessing, so maybe it's enough for fine-tuning.

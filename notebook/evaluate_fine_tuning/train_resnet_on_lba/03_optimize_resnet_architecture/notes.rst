@@ -84,6 +84,8 @@ fewer parameters:
 
 .. figure:: resnet_lba_fewer_params.svg
 
+.. datatable:: fewer_params.xlsx
+
 - These models all perform much better than those from 6/13.
 
   - This doesn't make sense.  The orange model (64 starting channels, no 
@@ -108,6 +110,15 @@ fewer parameters:
 - Bottleneck models (which have the fewest parameters) perform worse on the 
   training data, but the same on the validation data.
 
+- I'm going to use the 4x bottleneck model going forward.
+
+  - All of the models have pretty similar performance, so it probably doesn't 
+    really matter.
+
+  - That said, the 4x bottleneck seems to have the best validation performance 
+    of all the models, even if the difference is small.  It also has the fewest 
+    parameters, which is a good thing.
+
 2024/06/21: MLP hidden layers
 -----------------------------
 This experiment tests whether the number of channels in the hidden layer of the 
@@ -123,7 +134,7 @@ the 6/13 and 6/19 results.
   - With ≥1024 or ≤32 layers, both the RMSE and the Pearson R metrics suffer.
 
   - I'd say that 256 layers gives the best result, but there's not a big 
-    different between 128-512 layers.
+    difference between 128-512 layers.
 
 - I can't explain the discrepancy between the 6/13 and 6/19 results.
 
@@ -131,3 +142,37 @@ the 6/13 and 6/19 results.
 
   - I can't find anything wrong with the 6/13 training run, but I'm skeptical 
     of it.
+
+2024/06/27: Re-optimize bottleneck model
+----------------------------------------
+Having found that bottleneck ResNets seem to work better than plain ResNets 
+(6/19), I decided that it would be prudent to repeat the ligand channel, image 
+size, and drop rate optimizations, just to make sure that they aren't affected 
+by the underlying ResNet model.
+
+.. figure:: resnet_lba_bottleneck.svg
+
+- Results are similar to before:
+
+  - Including a ligand channel is still significantly beneficial.
+
+  - The smaller image is slightly better, particularly without a ligand 
+    channel.  But the difference is smaller here than it was before.
+
+  - The 20% drop rate seems too low: it gives the worst RMSE and Pearson R 
+    results.  The other drop rates all seem acceptable, but I'll probably stick 
+    with 50%.
+
+Discussion
+==========
+After some optimization, I've found many ResNet architectures that perform 
+adequately on the LBA dataset.  The hyperparameters that give the best results 
+are:
+
+- Include a ligand channel
+- Bottleneck architecture with a 4x bottleneck factor
+- 50% drop rate in the MLP
+- 256 channels in the MLP hidden layer.
+
+These hyperparameters achieve RMSE=1.56 and Pearson R=0.64, both significantly 
+better than the [Townshend2022]_ CNN.

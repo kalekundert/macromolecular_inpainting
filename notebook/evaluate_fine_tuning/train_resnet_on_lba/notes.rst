@@ -35,3 +35,52 @@ This is my first attempt to fine-tune a ResNet on the LBA dataset:
   CNN, I suspect that I need to find a better baseline model before I can 
   expect fine-tuning to give good results.
 
+2024/07/02: Fine-tune bottleneck ResNets
+----------------------------------------
+In :expt:`77`, I found that the bottleneck ResNet architecture seems to give 
+the best results on the LBA dataset.  So here, I pre-trained and fine-tuned a 
+bottleneck ResNet.
+
+.. figure:: pretrain_bottleneck.svg
+
+  The three hyperparameters in the legend are, in order: minimum padding (Å), 
+  maximum padding (Å), and maximum angle (°).
+
+- Unlike other ResNets I've pre-trained, these struggled to learn the dataset.
+
+  - This is probably because the bottleneck architecture has significantly 
+    fewer parameters.  I've already seen that models need to be pretty 
+    expressive to learn this dataset.
+
+  - There isn't a correlation between the amount of noise and whether training 
+    succeeds.  In fact, one of the only runs that succeeded was the one with 
+    the *most* noise.  I suspect that this is just random chance, though.
+
+- I only saved the final weights, so unfortunately I couldn't use the 1-4-20 
+  model since it's last epoch was pretty bad.  Instead I used the 1-2-0 model.  
+  I also started a new pre-training run that saves the best model (as judged by 
+  validation loss).  I'll be curious to see if the same models manage to learn 
+  in what is effective a duplicate training run.
+
+  .. update:: 2024/07/05
+
+    None of the models in the new pre-training run were able to learn the 
+    dataset.  I'm sure I could've gotten somewhere with curriculum learning, 
+    but this didn't seem like a promising approach.
+
+.. figure:: finetune_bottleneck.svg
+
+- Fine-tuning doesn't improve performance.
+
+  - Freezing the ResNet impairs performance, and letting the whole model update 
+    isn't any better than random initialization.
+  
+- The models do perform reasonably well this time, unlike in the 6/11 
+  experiment, but that is consistent with all the hyperparameter optimization I 
+  did in :expt:`77`.
+
+
+Discussion
+==========
+I wasn't able to show that pre-training and fine-tuning can improve the 
+performance of a ResNet model on the LBA dataset.
