@@ -131,3 +131,18 @@ Ligand binding affinity: state-of-the-art
       would be the approach for my second paper, not my first.
 
     
+Discussion
+==========
+2024/07/16:
+
+After having done a bunch of experimentation, I don't think that pretraining on 
+the Gym dataset is a good way to improve performance on macromolecular 
+datasets.  While pretraining does seem to help with a regular CNN on the LBA 
+dataset, it doesn't help in any other context I tried.
+
+I experimented mostly with three variables: the model, the dataset, and the 
+pretraining schedule.  I can't think of any other significant variable to 
+experiment with, but if I do, I might return to this.
+
+
+
