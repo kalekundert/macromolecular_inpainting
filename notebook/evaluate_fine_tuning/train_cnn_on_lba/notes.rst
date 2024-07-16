@@ -1,6 +1,6 @@
-**********************
-Train basic CNN on LBA
-**********************
+****************
+Train CNN on LBA
+****************
 
 The first data I want to collect is on the effect that pre-training has on a 
 basic CNN, on the LBA dataset.
