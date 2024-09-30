@@ -5,6 +5,8 @@
 *.tiff
 *.pdf
 *.db
+*.parquet
+*.sqlite
 
 workspace
 lightning_logs
