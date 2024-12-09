@@ -35,6 +35,7 @@ x = ift(x_hat).tensor
 
 ys = {
     'relu': F.relu(x),
+    'selu': F.selu(x),
     'tanh': F.tanh(x),
     'sin': torch.sin(x),
     'sin_pi2': torch.sin(pi/2*x),
@@ -77,6 +78,7 @@ fig = plt.figure(layout='compressed')
 
 pretty_labels = {
     'relu':                 r'$\mathrm{ReLU}(x)$',
+    'selu':                 r'$\mathrm{SELU}(x)$',
     'tanh':                 r'$\tanh(x)$',
     'sin':                  r'$\sin(x)$',
     'sin_pi2':              r'$\sin(\frac{\pi}{2}x)$',
@@ -100,9 +102,10 @@ def set_xylim(y_min=0):
 
 import numpy as np
 
-n = len(y_hats) - 1
+n = len(y_hats)
 n_cols = 4
 n_rows = 2 * int(ceil(n / n_cols))
+debug(n_cols, n_rows, n)
 
 plt.close()
 plt.figure(
@@ -115,15 +118,17 @@ x_flat = flatten(x)
 x_hat_flat = flatten(x_hat)
 
 for i, k in enumerate(y_hats):
+    debug(i, k)
     y_flat = flatten(ys[k])
     y_hat_flat = flatten(y_hats[k])
 
     R = np.corrcoef(x_hat_flat, y_hat_flat)[1,0]
+    std = np.std(y_hat_flat)
 
     # Plot the function itself.
     j = 8 * (i // 4) + (i % 4) + 1
     plt.subplot(n_rows, n_cols, j)
-    plt.title(f'{pretty_labels.get(k, k)}\nR={R:.3f}')
+    plt.title(f'{pretty_labels.get(k, k)}\nR={R:.3f}\nstd={std:.3f}')
     plt.xlabel('in')
     plt.ylabel('out')
     plt.plot(x_flat, y_flat, ',')
@@ -151,7 +156,7 @@ for i, k in enumerate(y_hats):
     set_xylim(5)
 
 
-plt.savefig('correlation.png')
+#plt.savefig('correlation.png')
 plt.show()
 
 raise SystemExit

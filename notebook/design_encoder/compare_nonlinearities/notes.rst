@@ -40,6 +40,13 @@ My preferred nonlinearities, based on these results, are the Hermite and
 hard-shrink functions.  They both have relatively strong effects on the inputs, 
 and don't seem likely to cause issues during training.
 
+.. update:: 2024/07/29
+
+  I added the SELU function, after reading that it's designed to preserve 
+  variance.  It's not an odd function, but it seems to avoid the artifacts 
+  associated with ReLU, and compares favorably with many of the other 
+  nonlinearities.
+
 Extra irreps
 ------------
 The plot above doesn't show this directly (you have to generate different 
