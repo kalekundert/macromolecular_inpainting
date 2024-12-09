@@ -11,8 +11,16 @@ pre-training).
 Results
 =======
 
-2024/06/11: 16Å, noisy neighbors
---------------------------------
+2024/06/10: Pretrain different image sizes
+------------------------------------------
+.. figure:: pretrain_resnet_24A.svg
+
+2024/06/10: Pretrain 16Å, noisy neighbors
+------------------------------------------
+.. figure:: pretrain_resnet_noise.svg
+
+2024/06/11: Fine-tune 16Å, noisy neighbors
+------------------------------------------
 This is my first attempt to fine-tune a ResNet on the LBA dataset:
 
 .. figure:: finetune_resnet_16A_v1.svg
