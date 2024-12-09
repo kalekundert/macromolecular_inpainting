@@ -1,6 +1,6 @@
-************************
-Prepare neighbor dataset
-************************
+************************************
+Brainstorm neighbor location dataset
+************************************
 
 Representation learning is the subfield of deep learning focused on producing 
 good latent representations, which is what I want to do here.  The specific 
