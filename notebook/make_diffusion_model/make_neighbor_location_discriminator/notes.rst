@@ -17,7 +17,7 @@ location of one relative to the other.  Equivariant ResNet-style models can
 achieve better than 80% accuracy on this task, depending on the amount of 
 noise.
 
-Note that a similar idea is used to evaluate the quality of generated 2FD 
+Note that a similar idea is used to evaluate the quality of generated 2D 
 images.  For that task, the discriminator is a classifier trained on labeled 
 image data.  The generator is judged based on how sharply the discriminator 
 classifies each sample.  My idea is a little different, because I'm not using a 
