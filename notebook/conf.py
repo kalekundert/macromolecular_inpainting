@@ -38,7 +38,7 @@ intersphinx_mapping = {
         'numpy': ('https://numpy.org/doc/stable/', None),
         'scipy': ('https://docs.scipy.org/doc/scipy/', None),
         'pandas': ('https://pandas.pydata.org/docs/', None),
-        'torch': ('https://pytorch.org/docs/master/', None),
+        'torch': ('https://pytorch.org/docs/stable/', None),
         'escnn': ('https://quva-lab.github.io/escnn/', None),
         'matplotlib': ('https://matplotlib.org/stable/', None),
 }
@@ -55,6 +55,12 @@ myst_enable_extensions = [
         'deflist',
         'tasklist',
 ]
+
+# For some reason I can't figure out, the browser fails to download MathJax 
+# from the CDN when it tries to render a Sphinx page, but not when I manually 
+# request the same URL.  I worked around this by just downloading the MathJax 
+# source locally.
+mathjax_path = 'MathJax-3.2.2/es5/tex-mml-chtml.js'
 
 # Overload default dollar delimiter, so it doesn't get confused when we use 
 # that delimiter in sphinx.  See:
