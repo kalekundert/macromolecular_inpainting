@@ -34,7 +34,9 @@ one thing), I don't think standardization makes sense.
 
 Results
 =======
-2024/05/28:
+
+2024/05/28
+----------
 
 I tried the following interventions:
 
@@ -59,3 +61,22 @@ I tried the following interventions:
   labels are being shuffled somehow.  When/if I figure out the bigger problem, 
   though, I should come back and test normalization again.  I think it will 
   help.
+
+2024/08/13
+----------
+I've now mostly settled on using 1Å resolution grids and 0.5Å atomic radii.  
+I'm still not sure that these are the best parameters, but the lower resolution 
+makes it more practical to generate larger images, and that's an important 
+consideration.  I also decided that I'm open to normalizing the standard 
+deviation, but not the mean.
+
+All of the above tests were done 0.75Å grids, so I recalculated the 
+normalization parameters for the above settings.  I got:
+
+========  ==================
+Mean      Standard deviation
+========  ==================
+0.006176  0.050018
+========  ==================
+
+I'll round this to 0.05 for production use.

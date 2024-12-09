@@ -1,31 +1,33 @@
 #!/usr/bin/env python3
 
-if __name__ == '__main__':
-    import torch
-    import polars as pl
-    import seaborn as sns
-    import matplotlib.pyplot as plt
+import torch
+import polars as pl
+import seaborn as sns
+import matplotlib.pyplot as plt
 
-    from macromol_gym_pretrain.lightning import CnnNeighborDataModule
-    from pipeline_func import f, X
-    from tqdm import tqdm
-    from more_itertools import first
+from macromol_gym_pretrain.lightning import CnnNeighborDataModule
+from pipeline_func import f, X
+from tqdm import tqdm
+from itertools import product
+from more_itertools import first
 
-    channels = [
+CHANNELS = [
+        [
             ['*']
-    ]
-    channels = [
+        ],
+        [
             ['C'],
             ['N'],
             ['O'],
             ['P'],
             ['S','SE'],
             ['*'],
-    ]
-    atom_radius_x = 0.5
-    atom_radius_x = 1.0
-    atom_radius_x = 1.5
+        ],
+]
+ATOM_RADIUS_X = [0.5, 1.0, 1.5]
+all_stats = []
 
+for channels, atom_radius_x in tqdm(list(product(CHANNELS, ATOM_RADIUS_X))):
     data = CnnNeighborDataModule(
             db_path='mmt_pdb.sqlite',
             neighbor_padding_A=1,
@@ -50,9 +52,9 @@ if __name__ == '__main__':
     )
     df = (
             pl.DataFrame(x_flat.numpy())
-            .melt(variable_name='channel', value_name='value')
+            .unpivot(variable_name='channel', value_name='value')
             .with_columns(
-                pl.col('channel').replace(
+                pl.col('channel').replace_strict(
                     {
                         f'column_{i}': dict(i=i, name='|'.join(elems))
                         for i, elems in enumerate(channels)
@@ -70,26 +72,20 @@ if __name__ == '__main__':
             )
             .unnest('channel')
             .sort('i')
+            .select(
+                atom_radius_x=atom_radius_x,
+                num_channels=len(channels),
+                channel_index='i',
+                channel_elements='name',
+                mean='mean',
+                std='std',
+            )
     )
-    debug(
-            channels,
-            atom_radius_x,
-            stats,
-    )
+    all_stats.append(stats)
 
-    # sns.displot(
-    #         df.sample(1_000_000),
-    #         x='value',
-    #         hue='channel',
-    #         kind='ecdf',
-    # )
-    # plt.show()
-
-    raise SystemExit
-
-    #raise SystemExit
-
-
+df = pl.concat(all_stats).sort('atom_radius_x', 'num_channels', 'channel_index')
+df.write_csv('calc_voxel_mean.csv')
+debug(df)
 
 
 
