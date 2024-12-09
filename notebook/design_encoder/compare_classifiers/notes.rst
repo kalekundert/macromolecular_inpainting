@@ -31,6 +31,7 @@ Some possible downsides:
 
 Results
 =======
+.. figure:: cnn_resnet_densenet.svg
 
 - DneseNet achieves >90% accuracy with non-equivariant classifier, as opposed 
   to ≈45% with the equivariant one.
