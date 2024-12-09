@@ -15,6 +15,11 @@ more errors.
 Results
 =======
 
+.. datatable:: entities_without_assemblies.csv
+
+  Note: I generated the CSV file being displayed above after incorporating 
+  fixes made to the PDB for some of the structures listed below.
+
 Errors
 ------
 - 7rqd:
