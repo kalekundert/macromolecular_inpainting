@@ -23,8 +23,10 @@ References
 .. [Jimenez2018] :doi:`10.1021/acs.jcim.7b00650`
 .. [Jones2017] :doi:`10.1108/EC-02-2016-0052`
 .. [Karras2022] :doi:`10.48550/arXiv.2206.00364`
+.. [Karras2024] :doi:`10.48550/arXiv.2312.02696`
 .. [Kopuklu2021] :doi:`10.48550/arXiv.1904.02422`
 .. [Krizhevsky2012] :doi:`10.1145/3065386`
+.. [Li2024] :doi:`10.48550/arXiv.2402.09240`
 .. [Liu2015] :doi:`10.1093/bioinformatics/btu626`
 .. [Maddhuri2019] :doi:`10.1038/s41592-019-0500-1`
 .. [Mahmoud2020] :doi:`10.1038/s42004-020-0261-x`
