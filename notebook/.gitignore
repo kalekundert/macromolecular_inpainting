@@ -1,4 +1,5 @@
 /build
+/.static/MathJax-*
 
 *.png
 *.tif
