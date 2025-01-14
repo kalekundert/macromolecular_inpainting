@@ -8,9 +8,13 @@ particular, this means dropping the requirement for zones to have neighbors.
 
 Results
 =======
+
+2024/12/08
+----------
 .. datatable:: row_counts.xlsx
 
-- The new database has more structures and assemblies, but fewer zones:
+- The new database has more structures and assemblies than the old one from 
+  :expt:`98`, but fewer zones:
 
   - This is probably due to the increased density check radius.  I expected 
     that the lack of a neighbor requirement would more than counteract this, 
@@ -32,3 +36,34 @@ Results
     that the database overall is smaller.  But this is probably due to the fact 
     that I used a smaller atom inclusion radius.
 
+2025/01/14
+----------
+
+I trained my best ResNet architecture (see :expt:`94`) on the 15Å neighbor 
+location task, using both the new and old datasets.  As mentioned above, the 
+new database has a larger radius but no neighbor requirement.  This could be 
+good or bad.  On one hand, the lack of a neighbor requirement means that there 
+will more mostly-empty neighbors, which don't really require any knowledge of 
+macromolecular structure to solve.  On the other hand, because neighbors are 
+sampled from uniformly, there's no way the model could learn to solve the task 
+without comparing both views.  When the database considers neighbors, and most 
+zones only have 1-2 allowed neighbor positions, it might be possible to just 
+look at one view and deduce from that where the neighbor is allowed to be 
+(although I don't have any evidence that this happens).
+
+.. note::
+
+  This data was also used to evaluate ViT models.  See :expt:`113` for details.
+
+.. figure:: compare_data.svg
+
+- Both datasets gave rise to similar results.
+
+  - Learning is initially faster on the new dataset, possibly because there are 
+    more "easy" examples.  But the model eventually achieves 80% accuracy on 
+    both datasets, indicating a some clear understanding of macromolecular 
+    structure.
+
+  - This gives me some additional reassurance that the model is actually 
+    learning.  I wouldn't expect the performance to be so similar if the model 
+    were exploiting some loophole in either dataset.
