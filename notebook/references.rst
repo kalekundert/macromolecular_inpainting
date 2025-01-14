@@ -9,6 +9,7 @@ References
 .. [CeretoMassague2013] :doi:`10.1186/1758-2946-5-36`
 .. [Cesa2022] https://openreview.net/forum?id=WE4qe9xlnQw
 .. [Chakraborti2021] :doi:`10.3390/ijms22136830`
+.. [Chen2023] :doi:`10.48550/arXiv.2208.04202`
 .. [Derevyanko2018] :doi:`10.1093/bioinformatics/bty494`
 .. [Doersch2016] :doi:`10.48550/arXiv.1505.05192`
 .. [Dosovitskiy2021] :doi:`10.48550/arXiv.2010.11929`
