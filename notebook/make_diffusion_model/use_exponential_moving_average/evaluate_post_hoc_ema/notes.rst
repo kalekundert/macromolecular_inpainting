@@ -1,6 +1,6 @@
-************
-Post-hoc EMA
-************
+*********************
+Evaluate post-hoc EMA
+*********************
 
 [Karras2024]_ introduces the idea of post-hoc EMA.  This involves saving ≈100 
 EMA checkpoints throughout the training run, then combining the weights from 
@@ -41,7 +41,7 @@ Results
 
 Discussion
 ==========
-- I still want to try split EMA [Li2024]_
+- I still want to try switch EMA [Li2024]_
 
   - The basic idea behind this method is to copy the EMA weights into the model 
     being trained at the end of each epoch.  This is still regularizing---the 
