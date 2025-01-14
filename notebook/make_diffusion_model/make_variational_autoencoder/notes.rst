@@ -60,3 +60,36 @@ Results
     and I can adjust $\beta$ accordingly.
     
 
+2024/12/17
+----------
+.. figure:: 20241217_train_vae.svg
+
+.. datatable:: 20241217_compression_ratios.csv
+
+- This time, the VAEs did learn to reconstruct the data.
+
+- The 2-layer models produced much better results than the 3-layer models.
+
+  - However, I realized after the fact that the 2-layer models didn't compress 
+    the input as much I wanted.  The table above shows the compression ratios 
+    for each model.  The smallest 2-layer model gives a 2x compression, and the 
+    worst actually has a larger latent representation that the input.  These 
+    compression ratios won't help speed up diffusion significantly.
+
+  - The problem is that I'm using frequency=2 Fourier field types, which are 
+    35-dimensional each.  I'll probably need to use lower frequency fields in 
+    order to get adequate compression ratios.
+
+  - The 3-layer models achieve better compression, but don't produce good 
+    reconstructions.
+
+- I looked at a handful of reconstructions for the 2-layer models.
+
+  - The reconstructions are perfect for most of the input, but often contain 
+    solid, filled-in blocks for some smaller parts.  I don't know what to make 
+    of that.
+
+- Longer training might help.  The models are still improving at the end, 
+  albeit slowly.
+
+
