@@ -29,6 +29,7 @@ References
 .. [Krizhevsky2012] :doi:`10.1145/3065386`
 .. [Li2024] :doi:`10.48550/arXiv.2402.09240`
 .. [Liu2015] :doi:`10.1093/bioinformatics/btu626`
+.. [Lugmayr2022] :doi:`10.48550/arXiv.2201.09865`
 .. [Maddhuri2019] :doi:`10.1038/s41592-019-0500-1`
 .. [Mahmoud2020] :doi:`10.1038/s42004-020-0261-x`
 .. [Malhotra2019] :doi:`10.1016/j.sbi.2019.05.024`

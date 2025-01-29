@@ -55,7 +55,7 @@ look at one view and deduce from that where the neighbor is allowed to be
 
   This data was also used to evaluate ViT models.  See :expt:`113` for details.
 
-.. figure:: compare_data.svg
+.. figure:: compare_db.svg
 
 - Both datasets gave rise to similar results.
 

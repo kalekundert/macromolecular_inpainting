@@ -15,7 +15,7 @@ shell from rosetta.  Briefly, the steps would be as follows:
 Results
 =======
 
-.. figure:: 20250123_make_clash_based_mask
+.. figure:: mask.png
 
 - I created this mask as follows:
 
