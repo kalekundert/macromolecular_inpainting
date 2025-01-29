@@ -1,1 +1,1 @@
-.expt/root/data/hms_o2_training/20240608_resnet_noise/resnet_noise.py
+.expt/root/data/scripts/20240608_resnet_noise/resnet_noise.py

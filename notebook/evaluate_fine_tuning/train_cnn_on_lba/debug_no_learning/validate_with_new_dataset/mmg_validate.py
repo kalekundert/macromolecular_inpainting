@@ -1,1 +1,1 @@
-.expt/root/data/hms_o2_training/20240529_train_ap_validate_mmg/mmg_validate.py
+.expt/root/data/scripts/20240529_train_ap_validate_mmg/mmg_validate.py

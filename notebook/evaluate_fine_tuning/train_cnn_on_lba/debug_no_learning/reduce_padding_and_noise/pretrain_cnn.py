@@ -1,1 +1,1 @@
-.expt/root/data/hms_o2_training/20240524_make_dataset_easy/pretrain_cnn.py
+.expt/root/data/scripts/20240524_make_dataset_easy/pretrain_cnn.py

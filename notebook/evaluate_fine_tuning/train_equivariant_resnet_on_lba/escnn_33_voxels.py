@@ -1,1 +1,1 @@
-.expt/root/data/hms_o2_training/20240610_escnn_33_voxels/escnn_33_voxels.py
+.expt/root/data/scripts/20240610_escnn_33_voxels/escnn_33_voxels.py

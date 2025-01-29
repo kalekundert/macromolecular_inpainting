@@ -1,1 +1,1 @@
-.expt/root/data/hms_o2_training/20240611_finetune_resnet_lba/finetune_resnet.py
+.expt/root/data/scripts/20240611_finetune_resnet_lba/finetune_resnet.py

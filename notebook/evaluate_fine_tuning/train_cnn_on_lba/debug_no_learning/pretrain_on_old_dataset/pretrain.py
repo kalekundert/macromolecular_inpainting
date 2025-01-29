@@ -1,1 +1,1 @@
-.expt/root/data/hms_o2_training/20240601_pretrain_on_ap/pretrain.py
+.expt/root/data/scripts/20240601_pretrain_on_ap/pretrain.py

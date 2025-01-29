@@ -1,1 +1,1 @@
-.expt/root/data/hms_o2_training/20240605_train_mmg_with_resnets/compare_resnet.py
+.expt/root/data/scripts/20240605_train_mmg_with_resnets/compare_resnet.py

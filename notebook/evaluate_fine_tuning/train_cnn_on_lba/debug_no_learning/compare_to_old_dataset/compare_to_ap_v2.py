@@ -1,1 +1,1 @@
-.expt/root/data/hms_o2_training/20240528_compare_to_ap/compare_to_ap.py
+.expt/root/data/scripts/20240528_compare_to_ap/compare_to_ap.py

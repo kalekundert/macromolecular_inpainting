@@ -1,1 +1,1 @@
-.expt/root/data/hms_o2_training/20240601_train_escnn_on_mmg/compare_escnn.py
+.expt/root/data/scripts/20240601_train_escnn_on_mmg/compare_escnn.py
