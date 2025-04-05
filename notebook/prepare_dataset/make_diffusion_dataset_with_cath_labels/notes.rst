@@ -6,6 +6,10 @@ My goal here is to make a version of my training dataset that is more suited
 for the diffusion modeling task, as opposed to the neighbor location task.  In 
 particular, this means dropping the requirement for zones to have neighbors.
 
+Data
+====
+:datadir:`scripts/20241204_add_cath_labels`
+
 Results
 =======
 

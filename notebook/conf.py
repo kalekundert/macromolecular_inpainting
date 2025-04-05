@@ -30,6 +30,7 @@ extensions = [ #
     'exmemo.sphinx.notebook',
     'exmemo.sphinx.doi',
     'exmemo.sphinx.datatable',
+    'exmemo.sphinx.data',
 ]
 
 # https://gist.github.com/bskinn/0e164963428d4b51017cebdb6cda5209
