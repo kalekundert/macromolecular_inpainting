@@ -6,6 +6,10 @@ For the neighbor location task, I found that I got the best performance with an
 equivariant encoder and a non-equivariant classifier.  My goal here was to find 
 out if the same is true in the context of a diffusion model.
 
+Data
+====
+:datadir:`scripts/20241016_compare_alpha_gamma_karras`
+
 Results
 =======
 .. figure:: train_diffusion.svg
