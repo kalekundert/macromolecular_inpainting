@@ -8,6 +8,10 @@ the model is making steps that are too big, and as a result fails to stay in
 local minima.  Here, I'm going to see if lowering the learning rate results in 
 steadier training.
 
+Data
+====
+:datadir:`scripts/20241028_compare_learning_rates`
+
 Results
 =======
 .. figure:: train_diffusion.svg
@@ -27,7 +31,7 @@ Results
   - The $10^{-4}$ model is more consistent in both metrics, and is clearly 
     better by Fréchet distance.
 
-  - The $10^{-5}$ model is also pretty consistent, but is generally worse thant 
+  - The $10^{-5}$ model is also pretty consistent, but is generally worse than 
     the $10^{-4}$ model.
 
 Discussion
