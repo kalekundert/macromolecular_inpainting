@@ -6,6 +6,11 @@ A common hyperparameter optimization is to vary the learning rate over the
 course of a training run.  Here I experiment with a few different schedules, to 
 see if any lead to better models.
 
+Data
+====
+:datadir:`scripts/20250129_diffusion_lr_scheduler`
+:datadir:`scripts/20250307_diffusion_cosine_annealing`
+
 Results
 =======
 
@@ -59,3 +64,32 @@ starts to spike after ≈80 epochs.
 
   - By epoch 80, the weights seem pretty stable.
 
+2025/04/08:
+
+.. figure:: cosine_anneal_1.svg
+
+.. figure:: cosine_anneal_2.svg
+
+- Each annealing cycle causes a small and quickly resolved increase in the 
+  training loss.  None of the other metrics seem affected by the annealing.
+
+- These models seem to be overfitting.
+
+  - The validation loss only really tracks the training loss for the first 25 
+    epochs.  After that, it's all over the place.
+
+  - The same thing happens in the 3/6 training run, although the plots look 
+    different due to the y-axis scale.
+
+  - I wonder if reducing the number of parameters would be beneficial.
+
+- Neither annealing schedule seems to significantly outperform the other.
+
+  - The fixed width cycle has higher accuracy on average, but I've found that 
+    accuracy is not a very informative metric.
+
+- Each annealing cycle leads to an increase in the magnitudes of the weights.
+
+  - This might be an argument for using Adamw.
+
+  - Overall, though, most of the parameters stay relatively small.
