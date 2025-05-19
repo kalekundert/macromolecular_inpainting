@@ -12,6 +12,10 @@ affects performance.  This hyperparameter has a strong effect on speed and
 memory usage, so I'd like to be able to use the smallest number of layers 
 possible.
 
+Data
+====
+:datadir:`scripts/20241108_train_densenet_classifier`
+
 Results
 =======
 
