@@ -38,10 +38,10 @@ experiment.  "C" represents a convolution, "B" represents a batch
 normalization, and "A" represents an activation function.  So the CBACBA block 
 has a convolution, followed by a batch normalization, followed by an 
 activation, followed by another convolution, etc.  "CBACB_A" is a special case.  
-The underscore indicates that the last activation is after the akip connection 
+The underscore indicates that the last activation is after the skip connection 
 is added back in.
 
-.. figure:: compare_resblock.svg
+.. figure:: compare_resblocks_v1.svg
 
 - After training, I realized that there were some major unintentional 
   differences between my "experimental" models and my baseline:
@@ -97,7 +97,6 @@ is added back in.
     see if I somehow implemented something wrong, but I couldn't find any 
     mistakes.
 
-
 - The CBACBA block performs much worse than the CBACB_A block.
 
   - These blocks are very similar; they only differ in whether the skip 
@@ -105,3 +104,16 @@ is added back in.
 
   - I'm surprised that the difference is so stark.  I'll be curious to see if 
     this holds up in the repeat training run.
+
+2025/05/19:
+
+.. figure:: compare_resblocks_v2.svg
+
+- After fixing the discrepancies mentioned above, the results are a bit 
+  different:
+
+  - The CBACB block performs much worse.
+
+  - The BAC blocks no longer outperforms the baseline on the validation set.  
+    Without identity initialization, the BACBACB block still performs pretty 
+    well, but the other BAC blocks are notably worse.
